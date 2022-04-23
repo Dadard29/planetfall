@@ -1,0 +1,7 @@
+runtime: go115
+
+service: "default"
+
+env_variables:
+  PROJECT_ID: "430247297597"
+  SERVICE: "default"
