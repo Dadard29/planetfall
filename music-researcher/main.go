@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/Dadard29/planetfall/planetfall"
-	"github.com/zmb3/spotify"
+	"github.com/zmb3/spotify/v2"
 	"golang.org/x/oauth2"
 )
 
