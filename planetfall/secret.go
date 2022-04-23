@@ -7,7 +7,7 @@ import (
 	secretmanagerpb "google.golang.org/genproto/googleapis/cloud/secretmanager/v1"
 )
 
-func (s *Server) getSecret(secretName string) (string, error) {
+func (s *Server) GetSecret(secretName string) (string, error) {
 	ctx := context.Background()
 
 	secretPath := fmt.Sprintf("projects/%s/secrets/%s/versions/latest", s.projectID, secretName)

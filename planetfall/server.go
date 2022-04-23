@@ -85,17 +85,17 @@ func (s *Server) handlerHealth(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "ok")
 }
 
-func (s *Server) listen(addr string) {
+func (s *Server) Listen(addr string) {
 	if err := http.ListenAndServe(addr, s.router); err != nil {
 		log.Fatal(err)
 	}
 }
 
-func (s *Server) close() {
+func (s *Server) Close() {
 	s.secretManager.Close()
 }
 
-func (s *Server) internalServerError(w http.ResponseWriter, r *http.Request, err error, message string) {
+func (s *Server) InternalServerError(w http.ResponseWriter, r *http.Request, err error, message string) {
 	err = fmt.Errorf("%s: %v", message, err)
 	s.errorReporting.Report(errorreporting.Entry{
 		Error: err,

@@ -13,7 +13,7 @@ import (
 	spotifyAuth "github.com/zmb3/spotify/v2/auth"
 )
 
-func (s *server) setSpotifyClient(ctx context.Context) error {
+func (s *service) setSpotifyClient(ctx context.Context) error {
 	// current token is valid
 	if s.spotifyToken != nil && s.spotifyToken.Expiry.After(time.Now()) {
 		return nil
@@ -21,12 +21,12 @@ func (s *server) setSpotifyClient(ctx context.Context) error {
 
 	log.Println("refreshing spotify client...")
 
-	clientId, err := s.getSecret(spotifyClientID)
+	clientId, err := s.server.getSecret(spotifyClientID)
 	if err != nil {
 		return fmt.Errorf("failed to get client ID: %v", err)
 	}
 
-	clientSecret, err := s.getSecret(spotifyClientSecret)
+	clientSecret, err := s.server.getSecret(spotifyClientSecret)
 	if err != nil {
 		return fmt.Errorf("failed to get client secret: %v", err)
 	}
