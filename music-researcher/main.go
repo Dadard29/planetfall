@@ -10,13 +10,6 @@ import (
 	"golang.org/x/oauth2"
 )
 
-type service struct {
-	server *planetfall.Server
-
-	spotifyClient *spotify.Client
-	spotifyToken  *oauth2.Token
-}
-
 var projectID = os.Getenv("PROJECT_ID")
 var serviceName = os.Getenv("SERVICE")
 
@@ -25,8 +18,15 @@ const (
 	spotifyClientSecret = "SPOTIFY_CLIENT_SECRET"
 )
 
+type musicResearcherService struct {
+	server *planetfall.Server
+
+	spotifyClient *spotify.Client
+	spotifyToken  *oauth2.Token
+}
+
 func main() {
-	svc := service{
+	svc := &musicResearcherService{
 		spotifyClient: nil,
 		spotifyToken:  nil,
 		server:        nil,

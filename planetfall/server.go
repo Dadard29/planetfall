@@ -60,6 +60,12 @@ func NewServer(
 	// init router
 	router := mux.NewRouter()
 
+	for _, route := range routeList {
+		router.HandleFunc(route.Endpoint, route.Handler).Methods(route.Methods...)
+	}
+
+	router.HandleFunc("/health", handlerHealth).Methods(http.MethodGet)
+
 	serv := &Server{
 		projectID:   projectID,
 		serviceName: serviceName,
@@ -70,17 +76,10 @@ func NewServer(
 		router: router,
 	}
 
-	// init handlers
-	serv.router.HandleFunc("/health", serv.handlerHealth).Methods(http.MethodGet)
-
-	for _, route := range routeList {
-		serv.router.HandleFunc(route.Endpoint, route.Handler).Methods(route.Methods...)
-	}
-
 	return serv, nil
 }
 
-func (s *Server) handlerHealth(w http.ResponseWriter, r *http.Request) {
+func handlerHealth(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprint(w, "ok")
 }

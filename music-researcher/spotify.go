@@ -13,7 +13,7 @@ import (
 	spotifyAuth "github.com/zmb3/spotify/v2/auth"
 )
 
-func (s *service) setSpotifyClient(ctx context.Context) error {
+func (s *musicResearcherService) setSpotifyClient(ctx context.Context) error {
 	// current token is valid
 	if s.spotifyToken != nil && s.spotifyToken.Expiry.After(time.Now()) {
 		return nil

@@ -8,7 +8,7 @@ import (
 	"github.com/zmb3/spotify/v2"
 )
 
-func (s *service) handlerSpotifySearch(w http.ResponseWriter, r *http.Request) {
+func (s *musicResearcherService) handlerSpotifySearch(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query().Get("q")
 
 	ctx := context.Background()
