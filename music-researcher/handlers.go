@@ -14,13 +14,13 @@ func (s *service) handlerSpotifySearch(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
 	err := s.setSpotifyClient(ctx)
 	if err != nil {
-		s.server.internalServerError(w, r, err, "failed setting up connection with Spotify")
+		s.server.InternalServerError(w, r, err, "failed setting up connection with Spotify")
 		return
 	}
 
 	searchResult, err := s.spotifyClient.Search(ctx, query, spotify.SearchTypeTrack)
 	if err != nil {
-		s.server.internalServerError(w, r, err, "failed interacting with Spotify")
+		s.server.InternalServerError(w, r, err, "failed interacting with Spotify")
 		return
 	}
 

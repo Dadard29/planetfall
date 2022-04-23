@@ -33,7 +33,7 @@ func main() {
 	}
 
 	serv, err := planetfall.NewServer(projectID, serviceName, []planetfall.Route{
-		planetfall.Route{
+		{
 			Endpoint: "spotify-search",
 			Handler:  svc.handlerSpotifySearch,
 			Methods:  []string{http.MethodGet},
@@ -44,12 +44,12 @@ func main() {
 	}
 
 	svc.server = serv
-	defer svc.server.close()
+	defer svc.server.Close()
 
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
 	log.Printf("Listening on port %s", port)
-	serv.listen(":" + port)
+	serv.Listen(":" + port)
 }

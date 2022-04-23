@@ -21,12 +21,12 @@ func (s *service) setSpotifyClient(ctx context.Context) error {
 
 	log.Println("refreshing spotify client...")
 
-	clientId, err := s.server.getSecret(spotifyClientID)
+	clientId, err := s.server.GetSecret(spotifyClientID)
 	if err != nil {
 		return fmt.Errorf("failed to get client ID: %v", err)
 	}
 
-	clientSecret, err := s.server.getSecret(spotifyClientSecret)
+	clientSecret, err := s.server.GetSecret(spotifyClientSecret)
 	if err != nil {
 		return fmt.Errorf("failed to get client secret: %v", err)
 	}
