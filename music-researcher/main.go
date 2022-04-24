@@ -34,8 +34,13 @@ func main() {
 
 	serv, err := planetfall.NewServer(projectID, serviceName, []planetfall.Route{
 		{
-			Endpoint: "spotify-search",
+			Endpoint: "/spotify/search",
 			Handler:  svc.handlerSpotifySearch,
+			Methods:  []string{http.MethodGet},
+		},
+		{
+			Endpoint: "/spotify/genres",
+			Handler:  svc.handlerSpotifyGenreList,
 			Methods:  []string{http.MethodGet},
 		},
 	})
