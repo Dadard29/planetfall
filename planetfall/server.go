@@ -93,14 +93,3 @@ func (s *Server) Listen(addr string) {
 func (s *Server) Close() {
 	s.secretManager.Close()
 }
-
-func (s *Server) InternalServerError(w http.ResponseWriter, r *http.Request, err error, message string) {
-	err = fmt.Errorf("%s: %v", message, err)
-	s.errorReporting.Report(errorreporting.Entry{
-		Error: err,
-		Req:   r,
-	})
-	log.Printf("%s: %v", message, err)
-
-	http.Error(w, message, http.StatusInternalServerError)
-}
